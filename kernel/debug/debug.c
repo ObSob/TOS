@@ -7,6 +7,7 @@ static elf_t kernel_elf;
 void
 init_debug()
 {
+    printk("init debug...\n");
     kernel_elf = elf_from_multiboot(glb_mboot_ptr);
 }
 
