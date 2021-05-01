@@ -2,14 +2,22 @@
 #include "debug.h"
 #include "gdt.h"
 #include "idt.h"
+#include "timer.h"
 
 int kern_entry()
 {
-    console_clear();
     init_debug();
     init_gdt();
     init_idt();
+
+    console_clear();
     printk_color(rc_black, rc_light_blue, "Hello, OS Kernel!\n");
+
+    init_timer(200);
+
+    // 开启中断
+    asm volatile ("sti");
+
 //    panic("panic test");
 
 	return 0;
