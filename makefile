@@ -48,11 +48,10 @@ umount_image:
 .PHONY:qemu
 qemu: update_image
 	qemu -fda floppy.img -boot a
-	#add '-nographic' option if using server of linux distro, such as fedora-server,or "gtk initialization failed" error will occur.
 
 .PHONY:qemu-nox
 qemu-nox:
-	qemu -fda floppy.img -boot a -nographic
+	qemu-system-i386 -fda floppy.img -boot a -nographic -monitor stdio
 	#add '-nographic' option if using server of linux distro, such as fedora-server,or "gtk initialization failed" error will occur.
 
 .PHONY:bochs
