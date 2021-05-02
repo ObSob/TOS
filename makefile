@@ -47,7 +47,10 @@ umount_image:
 
 .PHONY:qemu
 qemu: update_image
-	qemu -fda floppy.img -boot a
+	qemu-system-i386 \
+		-drive file=floppy.img,format=raw,if=floppy \
+		-boot a \
+		-m 128m
 
 .PHONY:qemu-nox
 qemu-nox:
