@@ -1,3 +1,4 @@
+#include "vmm.h"
 #include "common.h"
 #include "string.h"
 #include "elf.h"
@@ -11,7 +12,7 @@ elf_from_multiboot(multiboot_t *mb)
 
     uint32_t shstrtab = sh[mb->shndx].addr;
     for (i = 0; i < mb->num; i++) {
-        const char *name = (const char *)(shstrtab + sh[i].name);
+        const char *name = (const char *)(shstrtab + sh[i].name) + PAGE_OFFSET;
         if (strcmp(name, ".strtab") == 0) {
             elf.strtab = (const char *)sh[i].addr;
             elf.strtabsz = sh[i].size;

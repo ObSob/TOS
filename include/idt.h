@@ -4,13 +4,13 @@
 #include "types.h"
 
 static inline void
-cli(void)
+intr_off(void)
 {
     asm volatile("cli");
 }
 
 static inline void
-sti(void)
+intr_on(void)
 {
     asm volatile("sti");
 }

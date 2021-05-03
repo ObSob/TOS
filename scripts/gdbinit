@@ -1,4 +1,5 @@
 file hx_kernel
 target remote :1234
+b boot.s:52
 break kern_entry
 c

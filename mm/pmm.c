@@ -29,7 +29,7 @@ init_pmm()
             }
         }
     }
-    printk("%u pages in total\n", phy_page_count);
+    printk("%u physical pages in total\n", phy_page_count);
 }
 
 uint32_t

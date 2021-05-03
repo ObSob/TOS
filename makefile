@@ -2,7 +2,7 @@ CC = gcc
 LD = ld
 ASM = nasm
 
-C_FLAGS = -c -Wall -m32 -ggdb -gstabs+ -nostdinc -fno-builtin -fno-stack-protector -I include
+C_FLAGS = -c -Wall -m32 -ggdb -gstabs+ -nostdinc -fno-pic  -fno-builtin -fno-stack-protector -I include
 LD_FLAGS = -T scripts/kernel.ld -m elf_i386 -nostdlib
 ASM_FLAGS = -f elf -g -F stabs
 
@@ -50,11 +50,11 @@ qemu: update_image
 	qemu-system-i386 \
 		-drive file=floppy.img,format=raw,if=floppy \
 		-boot a \
-		-m 128m
+
 
 .PHONY:qemu-nox
 qemu-nox:
-	qemu-system-i386 -fda floppy.img -boot a -nographic -monitor stdio
+	qemu-system-i386 -fda floppy.img -boot a -nographic -display curses
 	#add '-nographic' option if using server of linux distro, such as fedora-server,or "gtk initialization failed" error will occur.
 
 .PHONY:bochs
